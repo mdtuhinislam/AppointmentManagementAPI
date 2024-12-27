@@ -1,67 +1,51 @@
-﻿using AppoinmentManagementAPI.Domain.Entities;
-using AppoinmentManagementAPI.Infrastructure.Database;
+﻿using System.Net;
+using AppoinmentManagementAPI.Domain.Entities;
+using AppointmentManagementAPI.Application.Interfaces.Services.Auth;
+using AppointmentManagementAPI.Presentation.HelperClass;
+using AppointmentManagementAPI.Presentation.UtilityModels;
+using CoreApiResponse;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace AppointmentManagementAPI.Presentation.Controllers.Auth
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AuthController : ControllerBase
+    public class AuthController : BaseController
     {
-        private readonly AppDbContext _context;
+        private readonly IAuthService _authService;
         private readonly IConfiguration _configuration;
 
-        public AuthController(AppDbContext context, IConfiguration configuration)
+        public AuthController(IAuthService authService, IConfiguration configuration)
         {
-            _context = context;
+            _authService = authService;
             _configuration = configuration;
         }
 
         [HttpPost("register")]
-        public IActionResult Register([FromBody] User user)
+        public async Task<IActionResult> Register([FromBody] UserDTO user)
         {
-            if (_context.Users.Any(u => u.Username == user.Username))
-                return BadRequest("Username already exists.");
+            var users = await _authService.GetAll();
+            if (users.Any(u => u.Username == user.Username))
+                return CustomResult("Username already exists, try another!",HttpStatusCode.BadRequest);
 
-            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
-            _context.Users.Add(user);
-            _context.SaveChanges();
-            return Ok("User registered successfully.");
+            if(await _authService.Add(new User { Username = user.Username, PasswordHash = user.PasswordHash}))
+                return CustomResult("User registered successfully.", user.Username, HttpStatusCode.Created);
+
+            return CustomResult("User creation failed!, please try again!",HttpStatusCode.InternalServerError);
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] User user)
+        public async Task<IActionResult> Login([FromBody] UserDTO user)
         {
-            var dbUser = _context.Users.FirstOrDefault(u => u.Username == user.Username);
-            if (dbUser == null || !BCrypt.Net.BCrypt.Verify(user.PasswordHash, dbUser.PasswordHash))
-                return Unauthorized("Invalid username or password.");
+            User _user = new User {UserId = 0 , Username = user.Username, PasswordHash=user.PasswordHash };
+            var dbUser = await _authService.IsValidUser(_user);
+            if (dbUser == null)
+                return CustomResult("Invalid username or password.", HttpStatusCode.Unauthorized);
 
-            var token = GenerateJwtToken(dbUser);
+            var token = JWTFactory.GenerateJwtToken(dbUser, _configuration);
             return Ok(new { Token = token });
         }
 
-        private string GenerateJwtToken(User user)
-        {
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString())
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-            var token = new JwtSecurityToken(
-                issuer: _configuration["Jwt:Issuer"],
-                audience: _configuration["Jwt:Audience"],
-                claims: claims,
-                expires: DateTime.Now.AddHours(1),
-                signingCredentials: creds);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
-        }
+        
     }
 }

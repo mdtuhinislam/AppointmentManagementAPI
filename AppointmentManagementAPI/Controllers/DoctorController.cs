@@ -37,7 +37,7 @@ namespace AppointmentManagementAPI.Presentation.Controllers
             var doctors = await _service.GetAll();
             if (doctors is null || doctors.Count() == 0)
                 return CustomResult("Data not found!", HttpStatusCode.NotFound);
-            return CustomResult("Data found!", doctors, HttpStatusCode.NotFound);
+            return CustomResult("Data found!", doctors, HttpStatusCode.OK);
         }
 
         [HttpGet("{id}")]
@@ -60,7 +60,7 @@ namespace AppointmentManagementAPI.Presentation.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAppointment(int id)
+        public async Task<IActionResult> DeleteDoctor(int id)
         {
             var isDeleted = await _service.Delete(await _service.GetById(id));
             if (!isDeleted)

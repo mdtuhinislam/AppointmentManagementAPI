@@ -2,10 +2,14 @@
 using AppoinmentManagementAPI.Application.Services.Doctors;
 using AppoinmentManagementAPI.Infrastructure.Database;
 using AppointmentManagementAPI.Application.Interfaces.Repository.Appointments;
+using AppointmentManagementAPI.Application.Interfaces.Repository.Auth;
 using AppointmentManagementAPI.Application.Interfaces.Repository.Doctors;
 using AppointmentManagementAPI.Application.Interfaces.Services.Appointments;
+using AppointmentManagementAPI.Application.Interfaces.Services.Auth;
 using AppointmentManagementAPI.Application.Interfaces.Services.Doctors;
+using AppointmentManagementAPI.Application.RepositoryServices.Auth;
 using AppointmentManagementAPI.Application.UseCases.Appointments;
+using AppointmentManagementAPI.Application.UseCases.Auth;
 using AppointmentManagementAPI.Application.UseCases.Doctors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,12 +33,14 @@ namespace AppoinmentManagementAPI.Application.DependecyInjection
             #region Services
             services.AddScoped<IAppointmentService, AppointmentService>();
             services.AddScoped<IDoctorService, DoctorService>();
+            services.AddScoped<IAuthService, AuthService>();
 
             #endregion
 
             #region Repositories
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             services.AddScoped<IDoctorRepository, DoctorRepository>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
 
             #endregion
 
