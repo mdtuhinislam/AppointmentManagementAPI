@@ -41,7 +41,7 @@ namespace AppointmentManagementAPI.Presentation.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAppointmentById(int id)
+        public async Task<IActionResult> GetDoctorById(int id)
         {
             var doctor = await _service.GetById(id);
             if (doctor == null)
@@ -51,7 +51,7 @@ namespace AppointmentManagementAPI.Presentation.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateAppointment([FromBody] Doctor doctor)
+        public async Task<IActionResult> UpdateDoctor([FromBody] Doctor doctor)
         {
             var isUpdated = await _service.Update(doctor);
             if (!isUpdated)
@@ -65,7 +65,7 @@ namespace AppointmentManagementAPI.Presentation.Controllers
             var isDeleted = await _service.Delete(await _service.GetById(id));
             if (!isDeleted)
                 return CustomResult("Data not deleted!", HttpStatusCode.InternalServerError);
-            return CustomResult("Appointment deleted successfully.", HttpStatusCode.OK);
+            return CustomResult("Doctor deleted successfully.", HttpStatusCode.OK);
         }
     }
 }

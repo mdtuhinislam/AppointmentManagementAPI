@@ -12,8 +12,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Database Configuration
-
 
 // JWT Authentication
 var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!);
