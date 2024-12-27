@@ -15,7 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AppoinmentManagementAPI.Domain\AppoinmentManagementAPI.Domain.csproj" />
+    <ProjectReference Include="..\AppoinmentManagementAPI.Domain\AppointmentManagementAPI.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ExternalServices\" />
   </ItemGroup>
 
 </Project>

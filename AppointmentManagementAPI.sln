@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppointmentManagementAPI.Presentation", "AppointmentManagementAPI\AppointmentManagementAPI.Presentation.csproj", "{7AF44667-D0BD-4E71-A19A-24A049F09C71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppointmentManagementAPI.Presentation", "AppointmentManagementAPI\AppointmentManagementAPI.Presentation.csproj", "{7AF44667-D0BD-4E71-A19A-24A049F09C71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppoinmentManagementAPI.Application", "AppoinmentManagementAPI.Application\AppoinmentManagementAPI.Application.csproj", "{7CE3ED8F-23BA-490A-A26E-84EB357AA929}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppointmentManagementAPI.Application", "AppoinmentManagementAPI.Application\AppointmentManagementAPI.Application.csproj", "{7CE3ED8F-23BA-490A-A26E-84EB357AA929}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppoinmentManagementAPI.Domain", "AppoinmentManagementAPI.Domain\AppoinmentManagementAPI.Domain.csproj", "{A90BA9B4-F080-43CB-AA63-D39C2813B70F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppointmentManagementAPI.Domain", "AppoinmentManagementAPI.Domain\AppointmentManagementAPI.Domain.csproj", "{A90BA9B4-F080-43CB-AA63-D39C2813B70F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppoinmentManagementAPI.Infrastructure", "AppoinmentManagementAPI.Infrastructure\AppoinmentManagementAPI.Infrastructure.csproj", "{8B4B35AC-EE73-4AB0-B972-C18743B19E1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppointmentManagementAPI.Infrastructure", "AppoinmentManagementAPI.Infrastructure\AppointmentManagementAPI.Infrastructure.csproj", "{8B4B35AC-EE73-4AB0-B972-C18743B19E1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

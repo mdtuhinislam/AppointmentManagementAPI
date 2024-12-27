@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace AppoinmentManagementAPI.Application.DependecyInjection
 {
-    public static class AddInfrustructureServices
+    public static class ServiceContainer
     {
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration config)
         {

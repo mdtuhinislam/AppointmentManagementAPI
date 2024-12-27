@@ -12,7 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AppoinmentManagementAPI.Infrastructure\AppoinmentManagementAPI.Infrastructure.csproj" />
+    <ProjectReference Include="..\AppoinmentManagementAPI.Infrastructure\AppointmentManagementAPI.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\Repository\Doctors\" />
+    <Folder Include="UseCases\Doctor\" />
   </ItemGroup>
 
 </Project>
