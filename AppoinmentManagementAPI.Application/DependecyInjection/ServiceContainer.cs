@@ -1,8 +1,12 @@
 ﻿using AppoinmentManagementAPI.Application.Services.Appointments;
+using AppoinmentManagementAPI.Application.Services.Doctors;
 using AppoinmentManagementAPI.Infrastructure.Database;
 using AppointmentManagementAPI.Application.Interfaces.Repository.Appointments;
+using AppointmentManagementAPI.Application.Interfaces.Repository.Doctors;
 using AppointmentManagementAPI.Application.Interfaces.Services.Appointments;
+using AppointmentManagementAPI.Application.Interfaces.Services.Doctors;
 using AppointmentManagementAPI.Application.UseCases.Appointments;
+using AppointmentManagementAPI.Application.UseCases.Doctors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,11 +28,13 @@ namespace AppoinmentManagementAPI.Application.DependecyInjection
             //Add dependency injection (DI)
             #region Services
             services.AddScoped<IAppointmentService, AppointmentService>();
+            services.AddScoped<IDoctorService, DoctorService>();
 
             #endregion
 
             #region Repositories
             services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+            services.AddScoped<IDoctorRepository, DoctorRepository>();
 
             #endregion
 

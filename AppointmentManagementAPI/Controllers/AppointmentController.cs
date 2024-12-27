@@ -11,11 +11,11 @@ namespace AppointmentManagementAPI.Presentation.Controllers
     [Authorize]
     [ApiController]
     [Route("api/[controller]")]
-    public class AppointmentsController : BaseController
+    public class AppointmentController : BaseController
     {
         private readonly IAppointmentService _service;
 
-        public AppointmentsController(IAppointmentService service)
+        public AppointmentController(IAppointmentService service)
         {
             _service = service;
         }

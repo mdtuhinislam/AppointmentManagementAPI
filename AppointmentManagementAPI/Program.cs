@@ -16,7 +16,7 @@ builder.Services.AddSwaggerGen();
 
 
 // JWT Authentication
-var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]);
+var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!);
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -33,9 +33,17 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(option =>
+{
+    option.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 

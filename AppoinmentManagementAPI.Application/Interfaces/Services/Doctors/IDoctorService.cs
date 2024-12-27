@@ -3,7 +3,8 @@ using AppointmentManagementAPI.Application.Interfaces.Services.Base;
 
 namespace AppointmentManagementAPI.Application.Interfaces.Services.Doctors
 {
-    internal interface IDoctorService: IService<Doctor>
+    public interface IDoctorService: IService<Doctor>
     {
+        Task<Doctor> GetById(int id);
     }
 }
