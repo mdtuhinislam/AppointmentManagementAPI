@@ -28,7 +28,6 @@ Run the application:
 bash
 Copy code
 dotnet run
-The API will be available at https://localhost:5001/.
 
 API Endpoints
 Authentication
