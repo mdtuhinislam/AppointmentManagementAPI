@@ -1,4 +1,4 @@
-Appointment Management API
+# Appointment Management API
 This repository contains the Appointment Management API, a .NET-based application designed to manage user authentication and appointment scheduling.
 
 Features
@@ -19,6 +19,7 @@ Set up the database:
 Update the connection string in appsettings.json to point to your SQL Server instance.
 
 Apply migrations to set up the database schema:
+**Select AppointmentManagementAPI.Infrastructure project to the console manager and run command "update-database"**
 
 bash
 Copy code
