@@ -1,4 +1,4 @@
-#Appointment Management API
+Appointment Management API
 This repository contains the Appointment Management API, a .NET-based application designed to manage user authentication and appointment scheduling.
 
 Features
